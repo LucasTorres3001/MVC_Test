@@ -1,0 +1,26 @@
+{
+    "name": "lucas_torres/mvc_test",
+    "description": "MVC Test",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "twig/twig": "v3.4.1",
+        "coffeecode/router": "2.0.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Source\\": "source/"
+        },
+        "files": [
+            "source/Config.php",
+            "source/Services/Function/functions.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Lucas Torres",
+            "email": "l.torres3001.lt@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
