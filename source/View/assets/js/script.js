@@ -1,7 +1,9 @@
-function main() {
+function main(hello, world) {
     
-    let arr = ['Hello','World!']
-
+    let arr = [
+        hello,
+        world
+    ]
     console.log(arr[0] + ", " + arr[1])
 }
 
@@ -13,4 +15,4 @@ let uf = Array(
     'SC' = 'Santa Catarina','SP' = 'São Paulo','SE' = 'Sergipe','TO' = 'Tocantins'
 )
 
-main()
+main("Hello","World!!!")
