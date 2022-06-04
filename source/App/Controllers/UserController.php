@@ -6,6 +6,7 @@
     use PDO;
     use Source\DB\Entity\Users;
     use Source\Model\User;
+    use Source\Model\Website;
     use Source\Services\Upload\Image;
 
     include './vendor/autoload.php';
@@ -76,8 +77,8 @@
          */
         public function dashboard(): void
         {
-            $user = User::dashboard();
-            $users = $user->fetchAll(
+            $webSite = Website::dashboard();
+            $users = $webSite->fetchAll(
                 PDO::FETCH_ASSOC
             );
             self::view(
@@ -145,8 +146,8 @@
          */
         public function home(): void
         {
-            $user = User::index();
-            $users = $user->fetchAll(
+            $webSite = Website::index();
+            $users = $webSite->fetchAll(
                 PDO::FETCH_ASSOC
             );
             self::view(
@@ -199,8 +200,8 @@
                     null, null, null, null, strip_tags('email'),
                     strip_tags('password'), null, null, null, null, null
                 );
-                $user = User::login($users);
-                if ($user->rowCount() > 0)
+                $web = Website::login($users);
+                if ($web->rowCount() > 0)
                 :
                     self::view(
                         'html.welcome'
@@ -263,10 +264,10 @@
         {
             if (!empty($_GET[$id_user::getID_User()]))
             :
-                $user = User::show(
+                $web = Website::show(
                     $_GET[$id_user::getID_User()]
                 );
-                $users = $user->fetchAll(
+                $users = $web->fetchAll(
                     PDO::FETCH_ASSOC
                 );
             endif;

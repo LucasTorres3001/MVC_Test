@@ -1,21 +1,21 @@
 <?php
 
-    namespace Source\Services\User;
+    namespace Source\Model;
 
     use PDO;
     use PDOStatement;
     use Source\DB\Connection\Connection;
     use Source\DB\Entity\Users;
-    use Source\Services\Validation\UserValidation;
 
     include './vendor/autoload.php';
     /**
      * Website features
      * 
+     * @final
      * @static
      * @author Lucas Torres <l.torres3001.lt@gmail.com>
      */
-    trait webSite
+    final class Website extends Connection
     {
         /**
          * Query
@@ -42,7 +42,7 @@
         final public static function dashboard(): PDOStatement|false
         {
             self::$query = "SELECT `id_user`,`firstName`,`lastName`,`email`,`image` FROM users";
-            self::$statement = Connection::getConnection()->prepare(self::$query);
+            self::$statement = self::getConnection()->prepare(self::$query);
             self::$statement->execute();
 
             return self::$statement;
@@ -57,8 +57,8 @@
          */
         final public static function index(): PDOStatement|false
         {
-            self::$query = "SELECT `id_user`,`firstName`,`lastName`,`gender`,`birth`,`image` FROM users";
-            self::$statement = Connection::getConnection()->prepare(self::$query);
+            self::$query = "SELECT `id_user`,`firstName`,`lastName`,`gender`,`birth`,`image`,`message` FROM users";
+            self::$statement = self::getConnection()->prepare(self::$query);
             self::$statement->execute();
 
             return self::$statement;
@@ -73,11 +73,8 @@
          */
         public static function login(Users $users): PDOStatement|false
         {
-            UserValidation::emailValidation($users::getEmail());
-            UserValidation::passwordValidation($users::getPassword());
-
             self::$query = "SELECT `email`,`password` FROM users WHERE `email` = :em AND `password` = sha1(:ps)";
-            self::$statement = Connection::getConnection()->prepare(self::$query);
+            self::$statement = self::getConnection()->prepare(self::$query);
             self::$statement->bindValue(":em", $users::getEmail(), PDO::PARAM_STR);
             self::$statement->bindValue(":ps", $users::getPassword(), PDO::PARAM_STR);
             self::$statement->execute();
@@ -95,11 +92,10 @@
         public static function searchUsers(string $lyric): PDOStatement|false|array
         {
             self::$query = "SELECT `firstName`,`lastName` FROM users WHERE `firstName` AND `lastName` LIKE '%:ly%'";
-            self::$statement = Connection::getConnection()->prepare(self::$query);
+            self::$statement = self::getConnection()->prepare(self::$query);
             self::$statement->bindValue(":ly", $lyric, PDO::PARAM_STR);
             self::$statement->execute();
             $numberUsers = self::$statement->fetchAll(PDO::FETCH_ASSOC);
-
             return $numberUsers;
         }
         /**
@@ -113,7 +109,7 @@
         public static function show(Users $users): PDOStatement|false
         {
             self::$query = "SELECT `firstName`,`lastName`,`email`,`gender`,`ethnicity`,`birth`,`image`,`message` FROM users WHERE `id_user` = :id";
-            self::$statement = Connection::getConnection()->prepare(self::$query);
+            self::$statement = self::getConnection()->prepare(self::$query);
             self::$statement->bindValue(":id", $users::getID_User(), PDO::PARAM_INT);
             self::$statement->execute();
 

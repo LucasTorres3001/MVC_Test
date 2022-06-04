@@ -7,7 +7,6 @@
     use Source\DB\Connection\Connection;
     use Source\DB\Entity\Users;
     use Source\Services\User\CreateReadUpdateDelete;
-    use Source\Services\User\webSite;
     use Source\Services\Validation\UserValidation;
 
     include './vendor/autoload.php';
@@ -19,10 +18,6 @@
      */
     class User extends Connection implements CreateReadUpdateDelete
     {
-        /**
-         * Web site
-         */
-        use webSite;
         /**
          * Query
          *
