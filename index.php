@@ -72,6 +72,11 @@
     $router->post('/register','UserController:store');
     /**
      * USER
+     * Search users
+     */
+    $router->get('/search/{lyric}','UserController:search');
+    /**
+     * USER
      * Show page
      */
     $router->get('/show/{id}','UserController:show');

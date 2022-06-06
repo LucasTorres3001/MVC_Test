@@ -181,6 +181,7 @@
             self::view(
                 'html.login',
                 [
+                    'users' => $users,
                     'title' => 'Login'
                 ]
             );
@@ -251,6 +252,25 @@
         {
             self::view(
                 'html.add'
+            );
+        }
+        /**
+         * Search users
+         *
+         * @method void search()
+         * @param string $lyric
+         * @return void
+         */
+        public function search(string $lyric): void
+        {
+            $users = Website::searchUsers($lyric);
+            $numUsers = $users->fetchAll(PDO::FETCH_ASSOC);
+            self::view(
+                'html.welcome',
+                [
+                    'numUsers' => $numUsers,
+                    'lyric' => $lyric
+                ]
             );
         }
         /**

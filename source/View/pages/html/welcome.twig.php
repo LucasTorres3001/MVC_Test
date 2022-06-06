@@ -13,13 +13,13 @@
         <main>
             <div id="search-container" class="col-md-12">
                 <h1>Search by user</h1>
-                <form action="/" method="GET">
+                <form action="http://127.0.0.1/Project/search/{lyric}" method="GET">
                     <input type="text" id="search" name="search" class="form-control" placeholder="Search...">
                 </form>
             </div>
             <div id="events-container" class="col-md-12">
-                {% if users|length > 0 %}
-                    <h2>Search for: </h2>
+                {% if numUsers|length > 0 %}
+                    <h2>Search for: {{lyric}}</h2>
                 {% endif %}
                 <div id="cards-container" class="row">
                     {% for u in users %}
@@ -33,8 +33,8 @@
                             </div>
                         </div>
                     {% endfor %}
-                    {% if %}
-                        <p>Não foi possível encontrar nenhum evento com #! <a href="/">See all</a></p>
+                    {% if numUsers|length == 0 and lyric %}
+                        <p>Não foi possível encontrar nenhum evento com {{lyric}}! <a href="/">See all</a></p>
                     {% else %}
                         <p>Não há eventos disponíveis</p>
                     {% endif %}

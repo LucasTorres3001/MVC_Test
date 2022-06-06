@@ -91,7 +91,7 @@
          */
         public static function searchUsers(string $lyric): PDOStatement|false|array
         {
-            self::$query = "SELECT `firstName`,`lastName` FROM users WHERE `firstName` AND `lastName` LIKE '%:ly%'";
+            self::$query = "SELECT `id_user`,`firstName`,`lastName`,`gender`,`birth`,`image`,`message` FROM users WHERE `firstName` OR `lastName` LIKE '%:ly%'";
             self::$statement = self::getConnection()->prepare(self::$query);
             self::$statement->bindValue(":ly", $lyric, PDO::PARAM_STR);
             self::$statement->execute();

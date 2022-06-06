@@ -22,7 +22,7 @@
                         <p style="color: #efe;">{{u}}</p>
                     {% endfor %}
                 {% else %}
-                    <!-- <h1 style="color: #efe;">Olá, Mundo!!!</h1> -->
+                    <h1 style="color: #efe;">Olá, Mundo!!!</h1>
                 {% endif %}
                 <div id="event-create-container" class="col-md-6 offset-md-3">
                     
