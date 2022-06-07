@@ -62,6 +62,11 @@
     $router->get('/home','UserController:home');
     /**
      * USER
+     * Search users
+     */
+    $router->get('/home/{lyric}','UserController:search');
+    /**
+     * USER
      * Login user
      */
     $router->post('/login','UserController:login');
@@ -70,11 +75,6 @@
      * Insert users
      */
     $router->post('/register','UserController:store');
-    /**
-     * USER
-     * Search users
-     */
-    $router->get('/search/{lyric}','UserController:search');
     /**
      * USER
      * Show page

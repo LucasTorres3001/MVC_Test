@@ -2,6 +2,7 @@
 
     namespace Source\App\Controllers;
 
+    use DateTime;
     use Exception;
     use PDO;
     use Source\DB\Entity\Users;
@@ -167,11 +168,23 @@
         {
             $welcome = Website::index();
             $users = $welcome->fetchAll(PDO::FETCH_ASSOC);
-            var_dump($users);
+            foreach ($users as $data)
+            :
+                $firstName = $data['firstName'];
+                $lastName = $data['lastName'];
+                $gender = $data['gender'];
+                $birth = $data['birth'];
+            endforeach;
+            $dt = DateTime::createFromFormat('Y-m-d',$birth);
+            $birthday = $dt->format('d/m/Y');
             self::view(
                 'html.login',
                 [
                     'users' => $users,
+                    'name' => $firstName,
+                    'surname' => $lastName,
+                    'gender' => $gender,
+                    'birthday' => $birthday,
                     'title' => 'Login'
                 ]
             );

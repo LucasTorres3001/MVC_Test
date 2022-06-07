@@ -18,9 +18,10 @@
             <section>
                 {% if users|length > 0 %}
                     <h2 style="color: #efe;">Hello, World!!</h2>
-                    {% for u in users %}
-                        <p style="color: #efe;">{{u}}</p>
-                    {% endfor %}
+                    <p style="color: #efe;">{{name}}</p>
+                    <p style="color: #efe;">{{surname}}</p>
+                    <p style="color: #efe;">{{gender}}</p>
+                    <p style="color: #efe;">{{birthday}}</p>
                 {% else %}
                     <h1 style="color: #efe;">Olá, Mundo!!!</h1>
                 {% endif %}

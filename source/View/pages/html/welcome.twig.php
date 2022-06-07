@@ -13,7 +13,7 @@
         <main>
             <div id="search-container" class="col-md-12">
                 <h1>Search by user</h1>
-                <form action="http://127.0.0.1/Project/search/{lyric}" method="GET">
+                <form action="http://127.0.0.1/Project/home/{lyric}" method="GET">
                     <input type="text" id="search" name="search" class="form-control" placeholder="Search...">
                 </form>
             </div>
