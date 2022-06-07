@@ -165,19 +165,9 @@
          */
         public function index(): void
         {
-            $users = (array) array(
-                'id_user' => 1,
-                'firstName' => 'Manuela',
-                'lastName' => 'Moura',
-                'cpf' => '12345678901',
-                'email' => 'manu.moura@gmail.com',
-                'password' => 'NaoSei01$',
-                'gender' => 'Feminine',
-                'ethnicity' => 'Caucasian',
-                'birth' => '31/07/2000',
-                'image' => 'imagem.jpg',
-                'msg' => 'Nada há declarar!'
-            );
+            $welcome = Website::index();
+            $users = $welcome->fetchAll(PDO::FETCH_ASSOC);
+            var_dump($users);
             self::view(
                 'html.login',
                 [
