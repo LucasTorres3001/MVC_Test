@@ -57,7 +57,7 @@
          */
         final public static function index(): PDOStatement|false
         {
-            self::$query = "SELECT `id_user`,`firstName`,`lastName`,`gender`,`birth`,`image`,`message` FROM users";
+            self::$query = "SELECT `id_user`,`firstName`,`lastName`,`gender`,`birth`,`image`,`message` FROM users ORDER BY `firstName`";
             self::$statement = self::getConnection()->prepare(self::$query);
             self::$statement->execute();
 
@@ -91,7 +91,7 @@
          */
         public static function searchUsers(string $lyric): PDOStatement|false|array
         {
-            self::$query = "SELECT `id_user`,`firstName`,`lastName`,`gender`,`birth`,`image`,`message` FROM users WHERE `firstName` OR `lastName` LIKE '%:ly%'";
+            self::$query = "SELECT `id_user`,`firstName`,`lastName`,`gender`,`birth`,`image`,`message` FROM users WHERE `firstName` OR `lastName` LIKE '%:ly%' ORDER BY `firstName`";
             self::$statement = self::getConnection()->prepare(self::$query);
             self::$statement->bindValue(":ly", $lyric, PDO::PARAM_STR);
             self::$statement->execute();

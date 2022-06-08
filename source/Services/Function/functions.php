@@ -23,6 +23,6 @@
     function redirect(?string $url): void
     {
         header(
-            "Location: {$url}"
+            "Location: {$url}.twig.php"
         );
     }

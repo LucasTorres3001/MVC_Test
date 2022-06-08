@@ -30,8 +30,9 @@
             {
                 $users = new Users
                 (
-                    null, strip_tags('first name'), strip_tags('last name'), strip_tags('cpf'), strip_tags('email'),
-                    strip_tags('password'),'gender', 'ethnicity', 'birth', Image::imgUpload(['img']), strip_tags('msg')
+                    null, strip_tags('first name'), strip_tags('last name'), strip_tags('cpf'), 
+                    strip_tags('email'), strip_tags('password'), 'gender', 'ethnicity',
+                    'birth', Image::imgUpload(['img']), strip_tags('msg')
                 );
                 $user = User::insert($users);
                 if ($user->rowCount() > 0)
@@ -181,8 +182,8 @@
                 'html.login',
                 [
                     'users' => $users,
-                    'name' => $firstName,
-                    'surname' => $lastName,
+                    'firstName' => $firstName,
+                    'lastName' => $lastName,
                     'gender' => $gender,
                     'birthday' => $birthday,
                     'title' => 'Login'
@@ -228,6 +229,16 @@
                     )
                 );
             }
+        }
+        /**
+         * Logout
+         *
+         * @method void logout()
+         * @return void
+         */
+        public function logout(): void
+        {
+            self::view('html.login');
         }
         /**
          * Errors page

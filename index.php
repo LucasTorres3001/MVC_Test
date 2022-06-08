@@ -72,6 +72,11 @@
     $router->post('/login','UserController:login');
     /**
      * USER
+     * Logout
+     */
+    $router->get('/logout','UserController:logout');
+    /**
+     * USER
      * Insert users
      */
     $router->post('/register','UserController:store');
