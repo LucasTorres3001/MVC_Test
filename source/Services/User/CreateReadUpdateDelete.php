@@ -29,7 +29,7 @@
          * Edit
          *
          * @abstract
-         * @method PDOStatement|false edt()
+         * @method PDOStatement|false read()
          * @static
          * @param Users $users
          * @return PDOStatement|false
