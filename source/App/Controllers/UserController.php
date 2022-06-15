@@ -110,7 +110,7 @@
         {
             if (!empty($_GET[$id::getID_User()]))
             :
-                $user = User::edit(
+                $user = User::read(
                     $_GET[$id::getID_User()]
                 );
                 $users = $user->fetchAll(

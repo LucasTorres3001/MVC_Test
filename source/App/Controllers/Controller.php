@@ -27,7 +27,7 @@
         protected static function view(string|TemplateWrapper $name, array $context = []): void
         {
             $name = str_replace('.','/',$name);
-            $name .= '.twig.php';
+            $name .= '.twig.html';
             $loader = new FilesystemLoader('source/View/pages');
             $twig = new Environment($loader);
 

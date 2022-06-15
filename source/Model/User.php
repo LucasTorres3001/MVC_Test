@@ -57,7 +57,7 @@
          * @param Users $users
          * @return PDOStatement|false
          */
-        public static function edit(Users $users): PDOStatement|false
+        public static function read(Users $users): PDOStatement|false
         {
             self::$query = "SELECT `id_user`,`firstName`,`lastName`,`email`,`message` FROM users WHERE `id_user` = :id";
             self::$statement = self::getConnection()->prepare(self::$query);

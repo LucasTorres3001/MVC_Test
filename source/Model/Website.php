@@ -95,7 +95,9 @@
             self::$statement = self::getConnection()->prepare(self::$query);
             self::$statement->bindValue(":ly", $lyric, PDO::PARAM_STR);
             self::$statement->execute();
-            $numberUsers = self::$statement->fetchAll(PDO::FETCH_ASSOC);
+            $numberUsers = self::$statement->fetchAll(
+                PDO::FETCH_ASSOC
+            );
             return $numberUsers;
         }
         /**

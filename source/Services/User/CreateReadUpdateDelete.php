@@ -34,7 +34,7 @@
          * @param Users $users
          * @return PDOStatement|false
          */
-        public static function edit(Users $users): PDOStatement|false;
+        public static function read(Users $users): PDOStatement|false;
         /**
          * Insert method
          *

@@ -63,7 +63,7 @@
          * @var array|null
          */
         private static ?array $options = array(
-            PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
+            PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4",
             PDO::ATTR_CURSOR => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
             PDO::ATTR_CASE => PDO::CASE_NATURAL
@@ -96,7 +96,7 @@
                     self::$password, self::$options
                 );
                 $connect->exec(
-                    'SET CHARACTER SET utf8'
+                    'SET CHARACTER SET utf8mb4'
                 );
                 return $connect;
             } catch (PDOException $ex)
