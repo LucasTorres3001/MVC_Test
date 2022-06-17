@@ -1,5 +1,9 @@
 <?php
-
+    /**
+     * User: Lucas Torres
+     * Date: 16/06/2022
+     * Time: 17:09
+     */
     namespace Source\Services\Function;
     /**
      * Die and Dump function

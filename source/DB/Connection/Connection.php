@@ -1,5 +1,9 @@
 <?php
-
+    /**
+     * User: Lucas Torres
+     * Date: 16/06/2022
+     * Time: 16:55
+     */
     namespace Source\DB\Connection;
 
     use PDO;

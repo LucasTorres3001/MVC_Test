@@ -1,5 +1,9 @@
 <?php
-
+    /**
+     * User: Lucas Torres
+     * Date: 16/06/2022
+     * Time: 17:03
+     */
     namespace Source\Services\User;
 
     use PDOStatement;
@@ -29,12 +33,12 @@
          * Edit
          *
          * @abstract
-         * @method PDOStatement|false read()
+         * @method array|false read()
          * @static
          * @param Users $users
-         * @return PDOStatement|false
+         * @return array|false
          */
-        public static function read(Users $users): PDOStatement|false;
+        public static function read(Users $users): array|false;
         /**
          * Insert method
          *

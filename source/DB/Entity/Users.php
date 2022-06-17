@@ -1,5 +1,9 @@
 <?php
-
+    /**
+     * User: Lucas Torres
+     * Date: 16/06/2022
+     * Time: 16:46
+     */
     namespace Source\DB\Entity;
     /**
      * Users entity

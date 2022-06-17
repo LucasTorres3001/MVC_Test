@@ -1,5 +1,9 @@
 <?php
-
+    /**
+     * User: Lucas Torres
+     * Date: 16/06/2022
+     * Time: 17:00
+     */
     namespace Source\Model;
 
     use PDO;
@@ -50,21 +54,22 @@
             return self::$statement;
         }
         /**
-         * Edit
+         * Read
          *
-         * @method PDOStatement|false edit()
+         * @method array|false read()
          * @static
          * @param Users $users
-         * @return PDOStatement|false
+         * @return array|false
          */
-        public static function read(Users $users): PDOStatement|false
+        public static function read(Users $users): array|false
         {
             self::$query = "SELECT `id_user`,`firstName`,`lastName`,`email`,`message` FROM users WHERE `id_user` = :id";
             self::$statement = self::getConnection()->prepare(self::$query);
             self::$statement->bindValue(":id", $users::getID_User(), PDO::PARAM_INT);
             self::$statement->execute();
+            $users = self::$statement->fetchAll(PDO::FETCH_ASSOC);
 
-            return self::$statement;
+            return $users;
         }
         /**
          * Insert method

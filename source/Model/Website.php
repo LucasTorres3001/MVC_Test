@@ -1,5 +1,9 @@
 <?php
-
+    /**
+     * User: Lucas Torres
+     * Date: 16/06/2022
+     * Time: 17:00
+     */
     namespace Source\Model;
 
     use PDO;
@@ -35,17 +39,22 @@
          * Dashboard
          *
          * @final
-         * @method PDOStatement|false dashboard()
+         * @method array dashboard()
          * @static
-         * @return PDOStatement|false
+         * @return array
          */
-        final public static function dashboard(): PDOStatement|false
+        final public static function dashboard(): array
         {
             self::$query = "SELECT `id_user`,`firstName`,`lastName`,`email`,`image` FROM users";
             self::$statement = self::getConnection()->prepare(self::$query);
             self::$statement->execute();
+            $users = array();
 
-            return self::$statement;
+            while ($rows = self::$statement->fetchObject('Website')):
+                $users[] = $rows;
+            endwhile;
+
+            return $users;
         }
         /**
          * Index

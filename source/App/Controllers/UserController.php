@@ -1,5 +1,9 @@
 <?php
-
+    /**
+     * User: Lucas Torres
+     * Date: 16/06/2022
+     * Time: 17:00
+     */
     namespace Source\App\Controllers;
 
     use DateTime;
@@ -80,13 +84,10 @@
         public function dashboard(): void
         {
             $webSite = Website::dashboard();
-            $users = $webSite->fetchAll(
-                PDO::FETCH_ASSOC
-            );
             self::view(
                 'html.dashboard',
                 [
-                    'users' => $users
+                    'users' => $webSite
                 ]
             );
         }
@@ -113,10 +114,7 @@
                 $user = User::read(
                     $_GET[$id::getID_User()]
                 );
-                $users = $user->fetchAll(
-                    PDO::FETCH_ASSOC
-                );
-                foreach ($users as $data)
+                foreach ($user as $data)
                 :
                     $id_user = $data['id_user'];
                     $firstName = $data['firstName'];
