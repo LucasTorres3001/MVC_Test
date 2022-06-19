@@ -147,13 +147,10 @@
         public function home(): void
         {
             $webSite = Website::index();
-            $users = $webSite->fetchAll(
-                PDO::FETCH_ASSOC
-            );
             self::view(
                 'html.welcome',
                 [
-                    'users' => $users
+                    'users' => $webSite
                 ]
             );
         }
@@ -166,25 +163,10 @@
         public function index(): void
         {
             $welcome = Website::index();
-            $users = $welcome->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($users as $data)
-            :
-                $firstName = $data['firstName'];
-                $lastName = $data['lastName'];
-                $gender = $data['gender'];
-                $birth = $data['birth'];
-            endforeach;
-            $dt = DateTime::createFromFormat('Y-m-d',$birth);
-            $birthday = $dt->format('d/m/Y');
             self::view(
                 'html.login',
                 [
-                    'users' => $users,
-                    'firstName' => $firstName,
-                    'lastName' => $lastName,
-                    'gender' => $gender,
-                    'birthday' => $birthday,
-                    'title' => 'Login'
+                    'users' => $welcome
                 ]
             );
         }

@@ -60,17 +60,19 @@
          * Index
          *
          * @final
-         * @method PDOStatement|false index()
+         * @method array|false index()
          * @static
-         * @return PDOStatement|false
+         * @return array|false
          */
-        final public static function index(): PDOStatement|false
+        final public static function index(): array|false
         {
             self::$query = "SELECT `id_user`,`firstName`,`lastName`,`gender`,`birth`,`image`,`message` FROM users ORDER BY `firstName`";
             self::$statement = self::getConnection()->prepare(self::$query);
             self::$statement->execute();
-
-            return self::$statement;
+            $users = self::$statement->fetchAll(
+                PDO::FETCH_ASSOC
+            );
+            return $users;
         }
         /**
          * Login
