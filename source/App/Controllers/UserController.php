@@ -115,7 +115,7 @@
                     $_GET[$id::getID_User()]
                 );
                 foreach ($user as $data)
-                :
+                {
                     $id_user = $data['id_user'];
                     $firstName = $data['firstName'];
                     $lastName = $data['lastName'];
@@ -123,7 +123,7 @@
                     $message = $data['message'];
                     $name = $data['firstName'];
                     $surname = $data['lastName'];
-                endforeach;
+                }
             endif;
             self::view(
                 'html.edit',
@@ -166,7 +166,8 @@
             self::view(
                 'html.login',
                 [
-                    'users' => $welcome
+                    'users' => $welcome,
+                    'title' => 'Login'
                 ]
             );
         }
@@ -281,14 +282,31 @@
                 $web = Website::show(
                     $_GET[$id_user::getID_User()]
                 );
-                $users = $web->fetchAll(
-                    PDO::FETCH_ASSOC
-                );
+                foreach ($web as $data)
+                {
+                    $name = $data['firstName'];
+                    $surname = $data['lastName'];
+                    $email = $data['email'];
+                    $gender = $data['gender'];
+                    $ethnicity = $data['ethnicity'];
+                    $birth = $data['birth'];
+                    $image = $data['image'];
+                    $message = $data['message'];
+                }
+                $happy = DateTime::createFromFormat($birth, 'Y-m-d');
+                $birthday = $happy->format('d/m/Y');
             endif;
             self::view(
                 'html.show',
                 [
-                    'users' => $users
+                    'name' => $name,
+                    'surname' => $surname,
+                    'email' => $email,
+                    'gender' => $gender,
+                    'ethnicity' => $ethnicity,
+                    'birthday' => $birthday,
+                    'image' => $image,
+                    'message' => $message
                 ]
             );
         }

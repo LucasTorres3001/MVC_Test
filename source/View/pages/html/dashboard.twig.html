@@ -33,16 +33,16 @@
                                 {% for u in users %}
                                     <tr>
                                         <td scope="row">{{}}</td>
-                                        <td>{{}}</td>
-                                        <td>{{}}</td>
+                                        <td>{{u.firstName}} {{u.lastName}}</td>
+                                        <td>{{u.email}}</td>
                                         <td>
-                                            <img src="../../assets/storage/public/img/{{}}" class="img-fluid" width="81" height="81" title="{{}}" alt="{{}}">
+                                            <img src="../../assets/storage/public/img/{{u.image}}" class="img-fluid" width="81" height="81" title="{{u.firstName}} {{u.lastName}}" alt="{{u.firstName}} {{u.lastName}}">
                                         </td>
                                         <td>
-                                            <a href="http://127.0.0.1/Project/edit/{{}}" title="Edit user" class="btn btn-info edit-btn">
+                                            <a href="http://127.0.0.1/Project/edit/{{u.id_user}}" title="Edit user" class="btn btn-info edit-btn">
                                                 <ion-icon name="create-outline"></ion-icon> Edit
                                             </a>
-                                            <a href="http://127.0.0.1/Project/edit/{{}}" title="Delete user" class="btn btn-danger delete-btn">
+                                            <a href="http://127.0.0.1/Project/edit/{{u.id_user}}" title="Delete user" class="btn btn-danger delete-btn">
                                                 <ion-icon name="trash-outline"></ion-icon> Delete
                                             </a>
                                         </td>

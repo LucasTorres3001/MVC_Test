@@ -13,7 +13,7 @@
         <main>
             <div id="search-container" class="col-md-12">
                 <h1>Search by user</h1>
-                <form action="http://127.0.0.1/Project/home/{lyric}" method="GET">
+                <form action="http://127.0.0.1/Project/home/{{lyric}}" method="GET">
                     <input type="text" id="search" name="search" class="form-control" placeholder="Search...">
                 </form>
             </div>
@@ -24,12 +24,12 @@
                 <div id="cards-container" class="row">
                     {% for u in users %}
                         <div class="card col-md-3">
-                            <img src="../../assets/storage/public/img/{{###}}" title="{{##}}" alt="{{##}}">
+                            <img src="../../assets/storage/public/img/{{u.image}}" title="{{u.firstName}} {{u.lastName}}" alt="{{u.firstName}} {{u.lastName}}">
                             <div class="card-body">
-                                <p class="card-date">{{##}}</p>
-                                <h5 class="card-title">{{##}}</h5>
-                                <p class="card-participants"> {{#}}</p>
-                                <a href="http://127.0.0.1/Project/show/{{#}}" title="Saiba mais" class="btn btn-primary">+</a>
+                                <p class="card-date">{{u.birth}}</p>
+                                <h5 class="card-title">{{u.firstName}} {{u.lastName}}</h5>
+                                <p class="card-participants"> {{u.gender}}</p>
+                                <a href="http://127.0.0.1/Project/show/{{u.id_user}}" title="Saiba mais" class="btn btn-primary">+</a>
                             </div>
                         </div>
                     {% endfor %}

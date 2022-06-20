@@ -39,21 +39,18 @@
          * Dashboard
          *
          * @final
-         * @method array dashboard()
+         * @method array|false dashboard()
          * @static
-         * @return array
+         * @return array|false
          */
-        final public static function dashboard(): array
+        final public static function dashboard(): array|false
         {
             self::$query = "SELECT `id_user`,`firstName`,`lastName`,`email`,`image` FROM users";
             self::$statement = self::getConnection()->prepare(self::$query);
             self::$statement->execute();
-            $users = array();
-
-            while ($rows = self::$statement->fetchObject('Website')):
-                $users[] = $rows;
-            endwhile;
-
+            $users = self::$statement->fetchAll(
+                PDO::FETCH_ASSOC
+            );
             return $users;
         }
         /**
@@ -114,18 +111,20 @@
         /**
          * Show
          *
-         * @method PDOStatement|false show()
+         * @method array|false show()
          * @static
          * @param Users $users
-         * @return PDOStatement|false
+         * @return array|false
          */
-        public static function show(Users $users): PDOStatement|false
+        public static function show(Users $users): array|false
         {
             self::$query = "SELECT `firstName`,`lastName`,`email`,`gender`,`ethnicity`,`birth`,`image`,`message` FROM users WHERE `id_user` = :id";
             self::$statement = self::getConnection()->prepare(self::$query);
             self::$statement->bindValue(":id", $users::getID_User(), PDO::PARAM_INT);
             self::$statement->execute();
-
-            return self::$statement;
+            $user = self::$statement->fetchAll(
+                PDO::FETCH_ASSOC
+            );
+            return $user;
         }
     }

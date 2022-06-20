@@ -67,8 +67,9 @@
             self::$statement = self::getConnection()->prepare(self::$query);
             self::$statement->bindValue(":id", $users::getID_User(), PDO::PARAM_INT);
             self::$statement->execute();
-            $users = self::$statement->fetchAll(PDO::FETCH_ASSOC);
-
+            $users = self::$statement->fetchAll(
+                PDO::FETCH_ASSOC
+            );
             return $users;
         }
         /**
