@@ -25,20 +25,20 @@
          * @abstract
          * @method PDOStatement|false delete()
          * @static
-         * @param Users $users
+         * @param integer $id_users
          * @return PDOStatement|false
          */
-        public static function delete(Users $users): PDOStatement|false;
+        public static function delete(int $id_users): PDOStatement|false;
         /**
          * Edit
          *
          * @abstract
          * @method array|false read()
          * @static
-         * @param Users $users
+         * @param integer $id_users
          * @return array|false
          */
-        public static function read(Users $users): array|false;
+        public static function read(int $id_users): array|false;
         /**
          * Insert method
          *
@@ -56,7 +56,8 @@
          * @method PDOStatement|false update()
          * @static
          * @param Users $users
+         * @param integer $id_users
          * @return PDOStatement|false
          */
-        public static function update(Users $users): PDOStatement|false;
+        public static function update(Users $users, int $id_users): PDOStatement|false;
     }

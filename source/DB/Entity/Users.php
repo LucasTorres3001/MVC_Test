@@ -15,13 +15,6 @@
     final class Users
     {
         /**
-         * Primary key
-         *
-         * @static
-         * @var integer|null
-         */
-        private static ?int $id_user;
-        /**
          * Table columns
          *
          * @static
@@ -43,9 +36,8 @@
          * @param string|null $image
          * @param string|null $message
          */
-        public function __construct(?int $id_user, ?string $firstName, ?string $lastName, ?string $cpf, ?string $email, ?string $password, ?string $gender, ?string $ethnicity, ?string $birth, ?string $image, ?string $message)
+        public function __construct(?string $firstName, ?string $lastName, ?string $cpf, ?string $email, ?string $password, ?string $gender, ?string $ethnicity, ?string $birth, ?string $image, ?string $message)
         {
-            self::$id_user = $id_user;
             self::$firstName = $firstName;
             self::$lastName = $lastName;
             self::$cpf = $cpf;
@@ -56,31 +48,6 @@
             self::$birth = $birth;
             self::$image = $image;
             self::$message = $message;
-        }
-        /**
-         * set ID user
-         *
-         * @final
-         * @method void setID_User()
-         * @static
-         * @param integer|null $id_user
-         * @return void
-         */
-        final public static function setID_User(?int $id_user): void
-        {
-            self::$id_user = $id_user;
-        }
-        /**
-         * get ID user
-         *
-         * @final
-         * @method integer|null getID_User()
-         * @static
-         * @return integer|null
-         */
-        final public static function getID_User(): ?int
-        {
-            return self::$id_user;
         }
         /**
          * set First name

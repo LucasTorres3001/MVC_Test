@@ -84,10 +84,12 @@
         public function dashboard(): void
         {
             $webSite = Website::dashboard();
+            $num = 0;
             self::view(
                 'html.dashboard',
                 [
-                    'users' => $webSite
+                    'users' => $webSite,
+                    'num' => $num
                 ]
             );
         }
@@ -95,24 +97,29 @@
          * Delete users
          *
          * @method void destroy()
-         * @param Users|integer $id_user
+         * @param array $id_user
          * @return void
          */
-        public function destroy(Users|int $id_user): void
-        {}
+        public function destroy(array $id_user): void
+        {
+            User::delete($id_user['id']);
+            self::view(
+                'html.dashboard'
+            );
+        }
         /**
          * Edit page
          *
          * @method void edit()
-         * @param Users|integer $id
+         * @param array $id_user
          * @return void
          */
-        public function edit(Users|int $id): void
+        public function edit(array $id_user): void
         {
-            if (!empty($_GET[$id::getID_User()]))
+            if (!empty($id_user['id']))
             :
                 $user = User::read(
-                    $_GET[$id::getID_User()]
+                    $id_user['id']
                 );
                 foreach ($user as $data)
                 {
@@ -272,20 +279,20 @@
          * Show page
          *
          * @method void show()
-         * @param Users|integer $id_user
+         * @param array $id_user
          * @return void
          */
-        public function show(Users|int $id_user): void
+        public function show(array $id_user): void
         {
-            if (!empty($_GET[$id_user::getID_User()]))
+            if (!empty($id_user['id']))
             :
                 $web = Website::show(
-                    $_GET[$id_user::getID_User()]
+                    $id_user['id']
                 );
                 foreach ($web as $data)
                 {
-                    $name = $data['firstName'];
-                    $surname = $data['lastName'];
+                    $firstName = $data['firstName'];
+                    $lastName = $data['lastName'];
                     $email = $data['email'];
                     $gender = $data['gender'];
                     $ethnicity = $data['ethnicity'];
@@ -293,14 +300,14 @@
                     $image = $data['image'];
                     $message = $data['message'];
                 }
-                $happy = DateTime::createFromFormat($birth, 'Y-m-d');
+                $happy = DateTime::createFromFormat('Y-m-d', $birth);
                 $birthday = $happy->format('d/m/Y');
             endif;
             self::view(
                 'html.show',
                 [
-                    'name' => $name,
-                    'surname' => $surname,
+                    'name' => $firstName,
+                    'surname' => $lastName,
                     'email' => $email,
                     'gender' => $gender,
                     'ethnicity' => $ethnicity,
@@ -354,19 +361,19 @@
          * Update user data
          *
          * @method void update()
-         * @param Users|integer $id_user
+         * @param array $id_user
          * @return void
          */
-        public function update(Users|int $id_user): void
+        public function update(array $id_user): void
         {
             try
             {
                 $users = new Users
                 (
-                    $id_user::getID_User(), strip_tags('first name'), strip_tags('last name'), null, strip_tags('email'),
+                    $id_user['id'], strip_tags('first name'), strip_tags('last name'), null, strip_tags('email'),
                     strip_tags('password'), null, null, null, Image::imgUpload(['img']), strip_tags('msg')
                 );
-                $user = User::update($users);
+                $user = User::update($users, $id_user['id']);
                 if ($user->rowCount() > 0)
                 :
                     self::view(
