@@ -113,14 +113,14 @@
          *
          * @method array|false show()
          * @static
-         * @param integer $id_users
+         * @param integer $id_user
          * @return array|false
          */
-        public static function show(int $id_users): array|false
+        public static function show(int $id_user): array|false
         {
             self::$query = "SELECT `firstName`,`lastName`,`email`,`gender`,`ethnicity`,`birth`,`image`,`message` FROM users WHERE `id_user` = :id";
             self::$statement = self::getConnection()->prepare(self::$query);
-            self::$statement->bindValue(":id", $id_users, PDO::PARAM_INT);
+            self::$statement->bindValue(":id", $id_user, PDO::PARAM_INT);
             self::$statement->execute();
             $user = self::$statement->fetchAll(
                 PDO::FETCH_ASSOC

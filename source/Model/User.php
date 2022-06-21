@@ -41,14 +41,14 @@
          *
          * @method PDOStatement|false delete()
          * @static
-         * @param integer $id_users
+         * @param integer $id_user
          * @return PDOStatement|false
          */
-        public static function delete(int $id_users): PDOStatement|false
+        public static function delete(int $id_user): PDOStatement|false
         {
             self::$query = "DELETE FROM users WHERE `id_user` = :id";
             self::$statement = self::getConnection()->prepare(self::$query);
-            self::$statement->bindValue(":id", $id_users, PDO::PARAM_INT);
+            self::$statement->bindValue(":id", $id_user, PDO::PARAM_INT);
             self::$statement->execute();
 
             return self::$statement;
@@ -58,14 +58,14 @@
          *
          * @method array|false read()
          * @static
-         * @param integer $id_users
+         * @param integer $id_user
          * @return array|false
          */
-        public static function read(int $id_users): array|false
+        public static function read(int $id_user): array|false
         {
             self::$query = "SELECT `id_user`,`firstName`,`lastName`,`email`,`message` FROM users WHERE `id_user` = :id";
             self::$statement = self::getConnection()->prepare(self::$query);
-            self::$statement->bindValue(":id", $id_users, PDO::PARAM_INT);
+            self::$statement->bindValue(":id", $id_user, PDO::PARAM_INT);
             self::$statement->execute();
             $users = self::$statement->fetchAll(
                 PDO::FETCH_ASSOC
@@ -110,10 +110,10 @@
          * @method PDOStatement|false update()
          * @static
          * @param Users $users
-         * @param integer $id_users
+         * @param integer $id_user
          * @return PDOStatement|false
          */
-        public static function update(Users $users, int $id_users): PDOStatement|false
+        public static function update(Users $users, int $id_user): PDOStatement|false
         {
             UserValidation::firstNameValidation($users::getFirstName());
             UserValidation::lastNameValidation($users::getLastName());
@@ -128,7 +128,7 @@
             self::$statement->bindValue(":ps", $users::getPassword(), PDO::PARAM_STR);
             self::$statement->bindValue(":img", $users::getImage(), PDO::PARAM_STR);
             self::$statement->bindValue(":msg", $users::getMsg(), PDO::PARAM_STR);
-            self::$statement->bindValue(":id", $id_users, PDO::PARAM_INT);
+            self::$statement->bindValue(":id", $id_user, PDO::PARAM_INT);
             self::$statement->execute();
 
             return self::$statement;
