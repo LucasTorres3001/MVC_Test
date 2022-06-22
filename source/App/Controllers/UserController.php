@@ -29,12 +29,6 @@
         {
             try
             {
-                $users = new Users
-                (
-                    null, strip_tags('first name'), strip_tags('last name'), strip_tags('cpf'), 
-                    strip_tags('email'), strip_tags('password'), 'gender', 'ethnicity',
-                    'birth', Image::imgUpload(['img']), strip_tags('msg')
-                );
                 /* $user = User::insert($users);
                 if ($user->rowCount() > 0)
                 :

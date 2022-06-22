@@ -7,13 +7,16 @@
 {% block body %}
     <div id="search-container" class="col-md-12">
         <h1>Search by user</h1>
-        <form action="http://127.0.0.1/Project/home/{{lyric}}" method="GET">
+        <form action="http://127.0.0.1/Project/home" method="GET">
             <input type="text" id="search" name="search" class="form-control" placeholder="Search...">
         </form>
     </div>
     <div id="events-container" class="col-md-12">
-        {% if users|length > 0 %}
-            <h2>Search for: {{lyric}}</h2>
+        {% if search %}
+            <h2>Search for: {{search}}</h2>
+        {% else %}
+            <h3>Users</h3>
+            <p class="subtitle">Look:</p>
         {% endif %}
         <div id="cards-container" class="row">
             {% for u in users %}
@@ -21,16 +24,18 @@
                     <img src="../../assets/storage/public/img/{{u.image}}" title="{{u.firstName}} {{u.lastName}}" alt="{{u.firstName}} {{u.lastName}}">
                     <div class="card-body">
                         <p class="card-date">{{u.birth}}</p>
-                        <h5 class="card-title">{{u.firstName}} {{u.lastName}}</h5>
+                        <h4 class="card-title">{{u.firstName}} {{u.lastName}}</h4>
                         <p class="card-participants"> {{u.gender}}</p>
                         <a href="http://127.0.0.1/Project/show/{{u.id_user}}" title="Saiba mais" class="btn btn-primary">+</a>
                     </div>
                 </div>
             {% endfor %}
-            {% if users|length == 0 and lyric %}
-                <p>Não foi possível encontrar nenhum evento com {{lyric}}! <a href="/">See all</a></p>
+            {% if users|length == 0 and search %}
+                <p>Could not find any user with the name: {{search}}! <a href="http://127.0.0.1/Project/home">See all</a></p>
             {% else %}
-                <p>Não há eventos disponíveis</p>
+                {% if users|length == 0 %}
+                    <p>There are no registered users</p>
+                {% endif %}
             {% endif %}
         </div>
     </div>

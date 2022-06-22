@@ -9,6 +9,7 @@
 
     use DateTime;
     use Source\Model\Website;
+    use function Source\Services\Function\dd;
 
     include './vendor/autoload.php';
     /**
@@ -54,11 +55,20 @@
          */
         public function home(): void
         {
-            $users = Website::index();
+            $search = $_GET['search'];
+            
+            if ($search != null)
+            {
+                $users = Website::searchUsers($search);
+            } else
+            {
+                $users = Website::index();
+            }
             self::view(
                 'html.welcome',
                 [
-                    'users' => $users
+                    'users' => $users,
+                    'search' => $search
                 ]
             );
         }
@@ -84,7 +94,11 @@
          * @return void
          */
         public function logout(): void
-        {}
+        {
+            self::view(
+                'html.login'
+            );
+        }
         /**
          * Errors page
          *
@@ -98,26 +112,6 @@
                 'html.error',
                 [
                     'error' => $error['errcode']
-                ]
-            );
-        }
-        /**
-         * Search by user
-         *
-         * @method void searchUsers()
-         * @param array $lyric
-         * @return void
-         */
-        public function searchUsers(array $lyric): void
-        {
-            $users = Website::searchUsers(
-                $lyric['lyric']
-            );
-            self::view(
-                'html.welcome',
-                [
-                    'users' => $users,
-                    'lyric' => $lyric['lyric']
                 ]
             );
         }

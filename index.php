@@ -16,7 +16,7 @@
      */
     $router->group(null);
     /**
-     * USER
+     * WEB
      * Login page
      */
     $router->get('/','WebController:index');
@@ -26,7 +26,7 @@
      */
     $router->post('/add','UserController:add');
     /**
-     * USER
+     * WEB
      * Add page
      */
     $router->get('/add_page','WebController:add');
@@ -36,7 +36,7 @@
      */
     $router->get('/create','UserController:create');
     /**
-     * USER
+     * WEB
      * Dashboard page
      */
     $router->get('/dashboard','WebController:dashboard');
@@ -56,22 +56,17 @@
      */
     $router->put('/edit/{id}','UserController:update');
     /**
-     * USER
+     * WEB
      * Welcome page
      */
     $router->get('/home','WebController:home');
-    /**
-     * USER
-     * Search users
-     */
-    $router->get('/home/{lyric}','UserController:search');
     /**
      * USER
      * Login user
      */
     $router->post('/login','UserController:login');
     /**
-     * USER
+     * WEB
      * Logout
      */
     $router->get('/logout','WebController:logout');
@@ -81,7 +76,7 @@
      */
     $router->post('/register','UserController:store');
     /**
-     * USER
+     * WEB
      * Show page
      */
     $router->get('/show/{id}','WebController:show');
@@ -91,7 +86,7 @@
      */
     $router->group('ooops');
     /**
-     * USER
+     * WEB
      * Errors page
      */
     $router->get('/{errcode}','WebController:notFound');

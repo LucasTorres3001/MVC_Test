@@ -94,14 +94,14 @@
          *
          * @method array|false searchUsers()
          * @static
-         * @param string $lyric
+         * @param string $search
          * @return array|false
          */
-        public static function searchUsers(string $lyric): array|false
+        public static function searchUsers(string $search): array|false
         {
-            self::$query = "SELECT `id_user`,`firstName`,`lastName`,`gender`,`birth`,`image`,`message` FROM users WHERE `firstName` OR `lastName` LIKE '%:ly%' ORDER BY `firstName`";
+            self::$query = "SELECT `id_user`,`firstName`,`lastName`,`gender`,`birth`,`image`,`message` FROM users WHERE `firstName` OR `lastName` LIKE '%:search%' ORDER BY `firstName`";
             self::$statement = self::getConnection()->prepare(self::$query);
-            self::$statement->bindValue(":ly", $lyric, PDO::PARAM_STR);
+            self::$statement->bindValue(":search", $search, PDO::PARAM_STR);
             self::$statement->execute();
             $users = self::$statement->fetchAll(
                 PDO::FETCH_ASSOC
