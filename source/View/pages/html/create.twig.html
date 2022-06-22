@@ -14,47 +14,54 @@
     <body>
         <main>
             <header>
-                <h1>Form registration</h1>
+                <h1>Create an account</h1>
             </header>
             <section>
                 <div id="event-create-container" class="col-md-6 offset-md-3">
-                    <>
+                    {% if variable %}
+                        <span style="color: red;">{{variable}}</span>
+                    {% endif %}
                     <form action="http://127.0.0.1/Project/register" method="POST" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="iF_name" title="First name">First name</label>
-                            <input type="text" name="iF_name" id="iF_name" title="First name" class="form-control" placeholder="First name" autofocus="" required>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="firstName" title="First name">First name</label>
+                                    <input type="text" name="firstName" id="firstName" title="First name" class="form-control" placeholder="First name" autofocus="" required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="lastName" title="Last name">Last name</label>
+                                    <input type="text" name="lastName" id="lastName" title="Last name" class="form-control" placeholder="Last name" required>
+                                </div>
+                            </div>
                         </div>
                         <br>
                         <div class="form-group">
-                            <label for="iL_name" title="Last name">Last name</label>
-                            <input type="text" name="iL_name" id="iL_name" title="Last name" class="form-control" placeholder="Last name" required>
+                            <label for="cpf" title="CPF">CPF</label>
+                            <input type="text" name="cpf" id="cpf" title="CPF" maxlength="11" class="form-control" placeholder="CPF" required>
                         </div>
                         <br>
                         <div class="form-group">
-                            <label for="iCpf" title="CPF">CPF</label>
-                            <input type="text" name="iCpf" id="iCpf" title="CPF" maxlength="11" class="form-control" placeholder="CPF" required>
+                            <label for="email" title="Email">E-mail</label>
+                            <input type="email" name="email" id="email" title="Email" class="form-control" placeholder="E-mail" required>
                         </div>
                         <br>
                         <div class="form-group">
-                            <label for="iEmail" title="Email">E-mail</label>
-                            <input type="email" name="iEmail" id="iEmail" title="Email" class="form-control" placeholder="E-mail" required>
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <label for="iPass" title="Password">Password</label>
-                            <input type="password" name="iPass" id="iPass" title="Password" class="form-control" placeholder="Password" required>
+                            <label for="password" title="Password">Password</label>
+                            <input type="password" name="password" id="password" title="Password" class="form-control" placeholder="Password" required>
                         </div>
                         <br>
                         <div class="form-group">
                             <label title="Gender">Gender</label>
                             <p>
-                                <input type="radio" name="iGender" class="check" id="fem" title="Feminine" value="F">
+                                <input type="radio" name="gender" class="check" id="fem" title="Feminine" value="Feminine">
                                 <label for="fem" title="Feminine">Feminine</label>
                             
-                                <input type="radio" name="iGender" class="check" id="male" title="Male" value="M">
+                                <input type="radio" name="gender" class="check" id="male" title="Male" value="Male">
                                 <label for="male" title="Male">Male</label>
                             
-                                <input type="radio" name="iGender" class="check" id="others" title="Others" value="Others">
+                                <input type="radio" name="gender" class="check" id="others" title="Others" value="Others">
                                 <label for="others" title="Others">Others</label>
                             </p>
                         </div>
@@ -62,41 +69,41 @@
                         <div class="form-group">
                             <label title="Ethnicity">Ethnicity</label>
                             <p>
-                                <input type="radio" name="iEth" class="check" id="am" title="Amerindian" value="Amerindian">
+                                <input type="radio" name="ethnicity" class="check" id="am" title="Amerindian" value="Amerindian">
                                 <label for="am" title="Amerindian">Amerindian</label>
                             
-                                <input type="radio" name="iEth" class="check" id="asian" title="Asian" value="Asian">
+                                <input type="radio" name="ethnicity" class="check" id="asian" title="Asian" value="Asian">
                                 <label for="asian" title="Asian">Asian</label>
                             
-                                <input type="radio" name="iEth" class="check" id="bl" title="Black" value="Black">
+                                <input type="radio" name="ethnicity" class="check" id="bl" title="Black" value="Black">
                                 <label for="bl" title="Black">Black</label>
 
-                                <input type="radio" name="iEth" class="check" id="cb" title="Caboclo" value="Caboclo">
+                                <input type="radio" name="ethnicity" class="check" id="cb" title="Caboclo" value="Caboclo">
                                 <label for="cb" title="Caboclo">Caboclo</label>
 
-                                <input type="radio" name="iEth" class="check" id="cf" title="Cafuzo" value="Cafuzo">
+                                <input type="radio" name="ethnicity" class="check" id="cf" title="Cafuzo" value="Cafuzo">
                                 <label for="cf" title="Cafuzo">Cafuzo</label>
 
-                                <input type="radio" name="iEth" class="check" id="cc" title="Caucasian" value="Caucasian">
+                                <input type="radio" name="ethnicity" class="check" id="cc" title="Caucasian" value="Caucasian">
                                 <label for="cc" title="Caucasian">Caucasian</label>
 
-                                <input type="radio" name="iEth" class="check" id="mt" title="Mulato" value="Mulato">
+                                <input type="radio" name="ethnicity" class="check" id="mt" title="Mulato" value="Mulato">
                                 <label for="mt" title="Mulato">Mulato</label>
                             </p>
                         </div>
                         <br>
                         <div class="form-group">
-                            <label for="Birthday" title="Birthday date">Birthday date</label>
-                            <input type="date" name="iBirthday" id="iBirthday" title="Birthday date" class="form-control" required>
+                            <label for="birth" title="Birthday date">Birthday date</label>
+                            <input type="date" name="birth" id="birth" title="Birthday date" class="form-control" required>
                         </div>
                         <br>
                         <div class="form-group">
-                            <input type="file" id="iImg" name="iImg[]" multiple class="from-control-file">
+                            <input type="file" id="image" name="image[]" multiple class="form-control-file">
                         </div>
                         <br>
                         <div class="form-group">
                             <p>Message</p>
-                            <textarea name="iMsg" cols="104" rows="7" id="iMsg" placeholder="User message"></textarea>
+                            <textarea name="message" cols="104" rows="7" id="message" placeholder="User message"></textarea>
                         </div>
                         <br>
                         <input type="submit" class="btn btn-primary" title="Register user" value="Register user">

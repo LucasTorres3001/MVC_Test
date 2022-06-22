@@ -45,10 +45,11 @@
          * @abstract
          * @method PDOStatement|false insert()
          * @static
-         * @param Users $users
+         * @param array $datas
+         * @param string|null $image
          * @return PDOStatement|false
          */
-        public static function insert(Users $users): PDOStatement|false;
+        public static function insert(array $datas, string|null $image): PDOStatement|false;
         /**
          * Update method
          *

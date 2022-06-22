@@ -77,7 +77,7 @@
          */
         final public static function emailValidation(string $email): void
         {
-            if (empty($email) or filter_var($email, FILTER_VALIDATE_EMAIL)):
+            if (empty($email) or !filter_var($email, FILTER_VALIDATE_EMAIL)):
                 throw new Exception('Invalid e-mail');
             endif;
         }

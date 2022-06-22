@@ -12,6 +12,7 @@
     use Source\DB\Entity\Users;
     use Source\Services\User\CreateReadUpdateDelete;
     use Source\Services\Validation\UserValidation;
+    use function Source\Services\Function\dd;
 
     include './vendor/autoload.php';
     /**
@@ -77,29 +78,30 @@
          *
          * @method PDOStatement|false insert()
          * @static
-         * @param Users $users
+         * @param array $datas
+         * @param string|null $image
          * @return PDOStatement|false
          */
-        public static function insert(Users $users): PDOStatement|false
+        public static function insert(array $datas, string|null $image): PDOStatement|false
         {
-            UserValidation::firstNameValidation($users::getFirstName());
-            UserValidation::lastNameValidation($users::getLastName());
-            UserValidation::cpfValidation($users::getCpf());
-            UserValidation::emailValidation($users::getEmail());
-            UserValidation::passwordValidation($users::getPassword());
+            UserValidation::firstNameValidation($datas['firstName']);
+            UserValidation::lastNameValidation($datas['lastName']);
+            UserValidation::cpfValidation($datas['cpf']);
+            UserValidation::emailValidation($datas['email']);
+            UserValidation::passwordValidation($datas['password']);
 
             self::$query = "INSERT INTO users VALUES(DEFAULT, :fn, :ln, :cpf, :em, sha1(:ps), :sex, :eth, :b, :img, :msg, NOW(), NOW())";
             self::$statement = self::getConnection()->prepare(self::$query);
-            self::$statement->bindValue(":fn", $users::getFirstName(), PDO::PARAM_STR);
-            self::$statement->bindValue(":ln", $users::getLastName(), PDO::PARAM_STR);
-            self::$statement->bindValue(":cpf", $users::getCpf(), PDO::PARAM_STR);
-            self::$statement->bindValue(":em", $users::getEmail(), PDO::PARAM_STR);
-            self::$statement->bindValue(":ps", $users::getPassword(), PDO::PARAM_STR);
-            self::$statement->bindValue(":sex", $users::getGender(), PDO::PARAM_STR);
-            self::$statement->bindValue(":eth", $users::getEthnicity(), PDO::PARAM_STR);
-            self::$statement->bindValue(":b", $users::getBirthday(), PDO::PARAM_STR);
-            self::$statement->bindValue(":img", $users::getImage(), PDO::PARAM_STR);
-            self::$statement->bindValue(":msg", $users::getMsg(), PDO::PARAM_STR);
+            self::$statement->bindValue(":fn", $datas['firstName'], PDO::PARAM_STR);
+            self::$statement->bindValue(":ln", $datas['lastName'], PDO::PARAM_STR);
+            self::$statement->bindValue(":cpf", $datas['cpf'], PDO::PARAM_STR);
+            self::$statement->bindValue(":em", $datas['email'], PDO::PARAM_STR);
+            self::$statement->bindValue(":ps", $datas['password'], PDO::PARAM_STR);
+            self::$statement->bindValue(":sex", $datas['gender'], PDO::PARAM_STR);
+            self::$statement->bindValue(":eth", $datas['ethnicity'], PDO::PARAM_STR);
+            self::$statement->bindValue(":b", $datas['birth'], PDO::PARAM_STR);
+            self::$statement->bindValue(":img", $image['image[]'], PDO::PARAM_STR);
+            self::$statement->bindValue(":msg", $datas['message'], PDO::PARAM_STR);
             self::$statement->execute();
 
             return self::$statement;

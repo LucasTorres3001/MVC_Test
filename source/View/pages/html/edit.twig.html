@@ -12,14 +12,19 @@
         <div id="vacancy-create-container" class="col-md-6 offset-md-3">
             <form action="http://127.0.0.1/Project/edit/{{id}}" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="id" id="id" value="{{id}}">
-                <div class="form-group">
-                    <label for="upF_name" title="First name">First name</label>
-                    <input type="text" name="upF_name" id="upF_name" title="First name" value="{{firstName}}" class="form-control" placeholder="First name" required>
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="upF_name" title="Last name">Last name</label>
-                    <input type="text" name="upL_name" id="upL_name" title="Last name" value="{{lastName}}" class="form-control" placeholder="Last name" required>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="upF_name" title="First name">First name</label>
+                            <input type="text" name="upF_name" id="upF_name" title="First name" value="{{firstName}}" class="form-control" placeholder="First name" required>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="upF_name" title="Last name">Last name</label>
+                            <input type="text" name="upL_name" id="upL_name" title="Last name" value="{{lastName}}" class="form-control" placeholder="Last name" required>
+                        </div>
+                    </div>
                 </div>
                 <br>
                 <div class="form-group">
@@ -33,7 +38,7 @@
                 </div>
                 <br>
                 <div class="form-group">
-                    <input type="file" id="upImg" name="upImg[]" multiple class="from-control-file">
+                    <input type="file" id="upImg" name="upImg[]" multiple class="form-control-file">
                 </div>
                 <br>
                 <div class="form-group">

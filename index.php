@@ -19,7 +19,7 @@
      * USER
      * Login page
      */
-    $router->get('/','UserController:index');
+    $router->get('/','WebController:index');
     /**
      * USER
      * Add users
@@ -29,7 +29,7 @@
      * USER
      * Add page
      */
-    $router->get('/addForm','UserController:page');
+    $router->get('/add_page','WebController:add');
     /**
      * USER
      * Registered page
@@ -39,7 +39,7 @@
      * USER
      * Dashboard page
      */
-    $router->get('/dashboard','UserController:dashboard');
+    $router->get('/dashboard','WebController:dashboard');
     /**
      * USER
      * Delete users
@@ -59,7 +59,7 @@
      * USER
      * Welcome page
      */
-    $router->get('/home','UserController:home');
+    $router->get('/home','WebController:home');
     /**
      * USER
      * Search users
@@ -74,7 +74,7 @@
      * USER
      * Logout
      */
-    $router->get('/logout','UserController:logout');
+    $router->get('/logout','WebController:logout');
     /**
      * USER
      * Insert users
@@ -84,7 +84,7 @@
      * USER
      * Show page
      */
-    $router->get('/show/{id}','UserController:show');
+    $router->get('/show/{id}','WebController:show');
     /**
      * ERRORS
      * Group
@@ -94,7 +94,7 @@
      * USER
      * Errors page
      */
-    $router->get('/{errcode}','UserController:notFound');
+    $router->get('/{errcode}','WebController:notFound');
 
     $router->dispatch();
 

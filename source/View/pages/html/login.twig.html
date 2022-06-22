@@ -13,21 +13,15 @@
     <body style="background-color: #222;">
         <main>
             <header>
-                <h1 style="color: #efe;">{{title}}</h1>
+                <div class="container">
+                    <h1 style="color: #efe;">{{title}}</h1>
+                </div>
             </header>
             <section>
-                {% if users|length > 0 %}
-                    <h2 style="color: #efe;">Hello, World!!</h2>
-                    {% for u in users %}
-                        <p style="color: #efe;">{{u.firstName}} {{u.lastName}}</p>
-                        <p style="color: #efe;">{{u.gender}}</p>
-                        <p style="color: #efe;">{{u.birth}}</p>
-                    {% endfor %}
-                {% else %}
-                    <h1 style="color: #efe;">Olá, Mundo!!!</h1>
-                {% endif %}
                 <div id="event-create-container" class="col-md-6 offset-md-3">
-                    
+                    {% if msg %}
+                        <span>{{msg}}</span>
+                    {% endif %}
                     <form action="http://127.0.0.1/Project/login" method="POST">
                         <div class="form-group">
                             <label for="loginEmail" style="color: #efe;" title="Email">E-mail</label>

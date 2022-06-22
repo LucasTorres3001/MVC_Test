@@ -10,16 +10,21 @@
             <h1>Add user</h1>
         </header>
         <div id="event-create-container" class="col-md-6 offset-md-3">
-            <>
+            <!--Notice-->
             <form action="http://127.0.0.1/Project/add" method="POST" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="addF_name" title="First name">First name</label>
-                    <input type="text" name="addF_name" id="addF_name" title="First name" class="form-control" placeholder="First name" autofocus="" required>
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="addL_name" title="Last name">Last name</label>
-                    <input type="text" name="addL_name" id="addL_name" title="Last name" class="form-control" placeholder="Last name" required>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="addF_name" title="First name">First name</label>
+                            <input type="text" name="addF_name" id="addF_name" title="First name" class="form-control" placeholder="First name" autofocus="" required>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="addL_name" title="Last name">Last name</label>
+                            <input type="text" name="addL_name" id="addL_name" title="Last name" class="form-control" placeholder="Last name" required>
+                        </div>
+                    </div>
                 </div>
                 <br>
                 <div class="form-group">
@@ -83,7 +88,7 @@
                 </div>
                 <br>
                 <div class="form-group">
-                    <input type="file" id="iImg" name="addImg[]" multiple class="from-control-file">
+                    <input type="file" id="iImg" name="addImg[]" multiple class="form-control-file">
                 </div>
                 <br>
                 <div class="form-group">

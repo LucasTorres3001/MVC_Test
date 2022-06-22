@@ -6,12 +6,9 @@
 
 {% block body %}
     <section>
-        <header>
-            <h1>Dashboard page</h1>
-        </header>
-        <div class="col-md-10 offset-md-1 dashboard-title-container">
+        <header class="col-md-10 offset-md-1 dashboard-title-container">
             <h1>Users list</h1>
-        </div>
+        </header>
         <div class="col-md-10 offset-md-1 dashboard-events-container">
             {% if users|length > 0 %}
                 <table class="table">
@@ -27,7 +24,7 @@
                     <tbody>
                         {% for u in users %}
                             <tr>
-                                <td scope="row">{{num++}}</td>
+                                <td scope="row">{{l}}</td>
                                 <td>{{u.firstName}} {{u.lastName}}</td>
                                 <td>{{u.email}}</td>
                                 <td>
