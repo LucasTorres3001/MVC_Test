@@ -55,22 +55,28 @@
          */
         public function home(): void
         {
-            $search = $_GET['search'];
-            
-            if ($search != null)
+            if (isset($_GET['search']))
             {
+                $search = $_GET['search'];
+
                 $users = Website::searchUsers($search);
+                self::view(
+                    'html.welcome',
+                    [
+                        'users' => $users,
+                        'search' => $search
+                    ]
+                );
             } else
             {
                 $users = Website::index();
+                self::view(
+                    'html.welcome',
+                    [
+                        'users' => $users
+                    ]
+                );
             }
-            self::view(
-                'html.welcome',
-                [
-                    'users' => $users,
-                    'search' => $search
-                ]
-            );
         }
         /**
          * Login page
@@ -96,7 +102,10 @@
         public function logout(): void
         {
             self::view(
-                'html.login'
+                'html.login',
+                [
+                    'title' => 'Login'
+                ]
             );
         }
         /**

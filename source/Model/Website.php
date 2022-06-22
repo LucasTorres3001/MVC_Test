@@ -99,9 +99,9 @@
          */
         public static function searchUsers(string $search): array|false
         {
-            self::$query = "SELECT `id_user`,`firstName`,`lastName`,`gender`,`birth`,`image`,`message` FROM users WHERE `firstName` OR `lastName` LIKE '%:search%' ORDER BY `firstName`";
+            self::$query = "SELECT `id_user`,`firstName`,`lastName`,`gender`,`birth`,`image`,`message` FROM users WHERE `firstName` OR `lastName` LIKE '% :se %' ORDER BY `firstName`";
             self::$statement = self::getConnection()->prepare(self::$query);
-            self::$statement->bindValue(":search", $search, PDO::PARAM_STR);
+            self::$statement->bindValue(":se", $search, PDO::PARAM_STR);
             self::$statement->execute();
             $users = self::$statement->fetchAll(
                 PDO::FETCH_ASSOC
