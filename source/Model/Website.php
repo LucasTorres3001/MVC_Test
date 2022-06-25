@@ -10,6 +10,7 @@
     use PDOStatement;
     use Source\DB\Connection\Connection;
     use Source\DB\Entity\Users;
+use Source\Services\Validation\UserValidation;
 
     include './vendor/autoload.php';
     /**
@@ -76,15 +77,18 @@
          *
          * @method PDOStatement|false login()
          * @static
-         * @param Users $users
+         * @param array $datas
          * @return PDOStatement|false
          */
-        public static function login(Users $users): PDOStatement|false
+        public static function login(array $datas): PDOStatement|false
         {
+            UserValidation::emailValidation($datas['email']);
+            UserValidation::passwordValidation($datas['password']);
+            
             self::$query = "SELECT `email`,`password` FROM users WHERE `email` = :em AND `password` = sha1(:ps)";
             self::$statement = self::getConnection()->prepare(self::$query);
-            self::$statement->bindValue(":em", $users::getEmail(), PDO::PARAM_STR);
-            self::$statement->bindValue(":ps", $users::getPassword(), PDO::PARAM_STR);
+            self::$statement->bindValue(":em", $datas['email'], PDO::PARAM_STR);
+            self::$statement->bindValue(":ps", $datas['password'], PDO::PARAM_STR);
             self::$statement->execute();
 
             return self::$statement;

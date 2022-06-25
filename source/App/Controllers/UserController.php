@@ -7,9 +7,9 @@
     namespace Source\App\Controllers;
 
     use Exception;
-    use Source\DB\Entity\Users;
     use Source\Model\User;
     use Source\Services\Upload\Image;
+    use function Source\Services\Function\dd;
 
     include './vendor/autoload.php';
     /**
@@ -29,18 +29,20 @@
         {
             try
             {
-                /* $user = User::insert($users);
-                if ($user->rowCount() > 0)
-                :
+                $user = User::create(
+                    $_POST, Image::imgUpload($_FILES['image'])
+                );
+                if ($user > 0)
+                {
                     self::view(
                         'html.dashboard'
                     );
-                else
-                :
+                } else
+                {
                     self::view(
                         'html.dashboard'
                     );
-                endif; */
+                };
             } catch (Exception $ex)
             {
                 self::view(
@@ -148,9 +150,12 @@
          */
         public function store(): void
         {
+            //dd($_FILES['image']);
             try
             {
-                $user = User::insert($_POST, Image::imgUpload($_FILES));
+                $user = User::create(
+                    $_POST, Image::imgUpload($_FILES['image'])
+                );
                 if ($user > 0)
                 {
                     self::view(
@@ -190,23 +195,22 @@
         {
             try
             {
-                /* $users = new Users
-                (
-                    $id_user['id'], strip_tags('first name'), strip_tags('last name'), null, strip_tags('email'),
-                    strip_tags('password'), null, null, null, Image::imgUpload(['img']), strip_tags('msg')
+                $user = User::update(
+                    $_POST,
+                    Image::imgUpload($_FILES['image']),
+                    $id_user['id']
                 );
-                $user = User::update($users, $id_user['id']);
-                if ($user->rowCount() > 0)
-                :
+                if ($user > 0)
+                {
                     self::view(
                         'html.dashboard'
                     );
-                else
-                :
+                } else
+                {
                     self::view(
                         'html.dashboard'
                     );
-                endif; */
+                }
             } catch (Exception $ex)
             {
                 self::view(

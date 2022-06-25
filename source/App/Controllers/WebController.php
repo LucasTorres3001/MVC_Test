@@ -10,6 +10,7 @@
     use DateTime;
     use Source\Model\Website;
     use function Source\Services\Function\dd;
+use function Source\Services\Function\redirect;
 
     include './vendor/autoload.php';
     /**
@@ -101,12 +102,7 @@
          */
         public function logout(): void
         {
-            self::view(
-                'html.login',
-                [
-                    'title' => 'Login'
-                ]
-            );
+            redirect(URL);
         }
         /**
          * Errors page

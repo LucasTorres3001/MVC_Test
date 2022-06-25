@@ -91,7 +91,7 @@
          * @static
          * @return PDO
          */
-        final public static function getConnection(): PDO
+        final protected static function getConnection(): PDO
         {
             try
             {

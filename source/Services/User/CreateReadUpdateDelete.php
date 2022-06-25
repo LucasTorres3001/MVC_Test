@@ -20,6 +20,17 @@
     interface CreateReadUpdateDelete
     {
         /**
+         * Insert method
+         *
+         * @abstract
+         * @method PDOStatement|false insert()
+         * @static
+         * @param array $datas
+         * @param string $img
+         * @return PDOStatement|false
+         */
+        public static function create(array $datas, string $img): PDOStatement|false;
+        /**
          * Delete method
          *
          * @abstract
@@ -40,25 +51,15 @@
          */
         public static function read(int $id_user): array|false;
         /**
-         * Insert method
-         *
-         * @abstract
-         * @method PDOStatement|false insert()
-         * @static
-         * @param array $datas
-         * @param string|null $image
-         * @return PDOStatement|false
-         */
-        public static function insert(array $datas, string|null $image): PDOStatement|false;
-        /**
          * Update method
          *
          * @abstract
          * @method PDOStatement|false update()
          * @static
-         * @param Users $users
+         * @param array $datas
+         * @param array $img
          * @param integer $id_user
          * @return PDOStatement|false
          */
-        public static function update(Users $users, int $id_user): PDOStatement|false;
+        public static function update(array $datas, string $img, int $id_user): PDOStatement|false;
     }
